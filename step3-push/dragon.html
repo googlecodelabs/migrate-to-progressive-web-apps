@@ -1,0 +1,81 @@
+<!--
+ Copyright 2016 Google Inc.
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dragotchi</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+  <script async src="site.js"></script>
+  <script async src="dragon.js"></script>
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+
+<header>
+
+  <img class="logo" src="logo.png" />
+  <h1>Dragotchi</h1>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dragon.html">Dragotchi</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+
+</header>
+
+<hr />
+
+<section>
+
+  <div class="dragon" id="outer">
+    <div id="guy" style="transform: translate(100px, 100px)">
+      <img src="dragon.png" />
+    </div>
+    <div id="gold"></div>
+  </div>
+
+  <table align="center" id="data">
+  </table>
+  <form method="post" class="actions" id="actions">
+  </form>
+
+  <script>
+
+  var size = outer.getBoundingClientRect();
+
+  window.setInterval(function() {
+    var x = Math.random() * size.width;
+    var y = Math.random() * size.height;
+    guy.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+  }, 5000);
+  </script>
+
+</section>
+
+<hr />
+
+<footer>
+
+  Learn more at <a href="https://developers.google.com/web">Google Developers</a>
+
+</footer>
+
+</body>
+</html>
