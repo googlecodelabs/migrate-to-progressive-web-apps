@@ -2,6 +2,8 @@
 
 This folder contains the source code for a Google I/O 2016 codelab.
 
+You can find the [codelab on Google Developers](https://codelabs.developers.google.com/codelabs/migrate-to-progressive-web-apps/)!
+
 ### License
 
 ```
