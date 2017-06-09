@@ -32,6 +32,8 @@ button.addEventListener('click', function() {
     }, () => {
       alert('Failed!');
     });
+  }).catch(err => {
+    alert('Couldn\'t get Service Worker- is it installed?');
   });
   
 });
