@@ -78,14 +78,14 @@ function prepareAuthorization(publicKey, privateKey, endpoint, sender) {
   const args = {name: 'ECDSA', namedCurve: 'P-256'};
   return crypto.subtle.importKey('jwk', key, args, true, ['sign'])
       .then(key => {
-        const buffer = crypto.subtle.sign({
+        return crypto.subtle.sign({
           name: 'ECDSA',
           hash: {
             name: 'SHA-256',
           },
         }, key, (new TextEncoder('utf-8')).encode(unsignedToken));
-        return new Uint8Array(buffer);
-      });
+      })
+      .then(buffer => new Uint8Array(buffer))
       .then(signature => {
         return 'WebPush ' + unsignedToken + '.' + uint8ArrayToBase64Url(signature);
       });
