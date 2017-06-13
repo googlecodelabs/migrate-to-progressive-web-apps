@@ -12,17 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function urlB64ToUint8Array(base64String) {
-  const base64 = base64String + ('='.repeat(base64String.length % 4))
-      .replace(/\-/g, '+')
-      .replace(/_/g, '/');
-
-  const raw = window.atob(base64);
-
-  const output = new Uint8Array(raw.length);
-  Array.from(raw).forEach((c, i) => output[i] = c.charCodeAt(0));
-  return output;
-}
+const publicKey = '<public key from Push Companion>';
 
 navigator.serviceWorker && navigator.serviceWorker.register('./sw.js').then(function(registration) {
   console.log('Excellent, registered with scope: ', registration.scope);
@@ -34,12 +24,18 @@ navigator.serviceWorker && navigator.serviceWorker.ready.then(function(serviceWo
       // subscription will be null or a PushSubscription
       if (subscription) {
         console.info('Got existing', subscription);
+        window.subscription = subscription;
         return;  // got one, yay
       }
-      serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
+
+      const applicationServerKey = urlB64ToUint8Array(publicKey);
+      serviceWorkerRegistration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey,
+      })
         .then(function(subscription) { 
           console.info('Newly subscribed to push!', subscription);
+          window.subscription = subscription;
         });
     });
 });
-

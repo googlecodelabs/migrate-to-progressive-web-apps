@@ -12,14 +12,4 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function urlB64ToUint8Array(base64String) {
-  const base64 = base64String + ('='.repeat(base64String.length % 4))
-      .replace(/\-/g, '+')
-      .replace(/_/g, '/');
-
-  const raw = window.atob(base64);
-
-  const output = new Uint8Array(raw.length);
-  Array.from(raw).forEach((c, i) => output[i] = c.charCodeAt(0));
-  return output;
-}
+/** Intentionally empty */
